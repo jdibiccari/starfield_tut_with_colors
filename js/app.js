@@ -45,10 +45,17 @@ function update() {
   requestAnimationFrame(update);
 }
 
+function get_random_color() {
+  function c() {
+    return Math.floor(Math.random()*256).toString(16);
+  }
+  return "#"+c()+c()+c();
+}
+
 function makeParticles() {
   var particle, material;
   for (var zpos= -1000; zpos < 1000; zpos+=20){
-    var color = '#'+Math.floor(Math.random()*16777215).toString(16);
+    var color = get_random_color();
     material = new THREE.ParticleCanvasMaterial( {color: color, program: particleRender});
     particle = new THREE.Particle(material);
     particle.position.x = Math.random() * 1000 - 500;
